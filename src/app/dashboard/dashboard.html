@@ -1,0 +1,35 @@
+<div>
+    <nav>
+  <a class="button" [appShowHide]="name" (onmouseleave)="onmouseleave($event)"
+     routerLink="home"
+     routerLinkActive="active-link"
+     ariaCurrentWhenActive="page"
+     >
+     <!-- [routerLinkActiveOptions]="{exact: true}" -->
+    Home
+  </a> |
+  <a class="button" #main
+     routerLink="main"
+     routerLinkActive="active-link"
+     ariaCurrentWhenActive="page" (click)="changeElcolor()"
+     >
+     <!-- [routerLinkActiveOptions]="{exact: true}" -->
+    Main111
+  </a>
+</nav>
+
+
+<hr><hr>
+</div>
+<a routerLink="/about/6" style="color:blue" [appShowHide]="name">navigat to ABOUT</a>
+
+<div>
+    <a [routerLink]="['/about',4]" [queryParams]="{ name: 'Tarun', id: 3 }" routerLinkActive="active-button" style="color:red">navigat to About wth QUERY PARAMS</a>
+</div>
+<div>
+    <a (click)="navigate()" style="color:green">About</a>
+</div>
+<div>
+    <a routerLink="rxjs" style="color:green">Rxjs</a>
+</div>
+<router-outlet></router-outlet>

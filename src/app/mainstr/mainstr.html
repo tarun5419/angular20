@@ -1,0 +1,41 @@
+<p>mainstr works!</p>
+@for (item of items; track item.id) {
+  <div>{{ item.name }}</div>
+}
+
+*******************************************************************************************************************
+<br>
+<!-- @if example -->
+@if (showList) {
+  <h2>User List</h2>
+
+  <!-- @for example -->
+  @for (user of users; track user.id) {
+    <div>
+      <strong>{{ user.name }}</strong> -
+      
+      <!-- @switch example -->
+      @switch (user.role) {
+        @case ('admin') {
+          <span style="color: red">Administrator</span>
+        }
+        @case ('user') {
+          <span style="color: green">Regular User</span>
+        }
+        @default {
+          <span style="color: gray">Guest</span>
+        }
+      }
+    </div>
+  }
+} @else {
+  <p>No users to display.</p>
+}
+
+************************************************************************************************************************
+<ng-template select let-data [selectFrom]="users">
+  <p>The data is: {{ data.role }}</p>
+</ng-template>
+******************************************************************************************************************************
+<!-- <p *select="let data from users">The data is: {{data.role}}</p> -->
+<router-outlet></router-outlet>

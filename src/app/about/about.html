@@ -1,0 +1,39 @@
+<p>about works!</p>
+<a routerLink="/dashboard">navigat to DASHBOARD</a>
+
+<div>
+    <!-- <form #profileForm="ngForm"></form> -->
+     <form [formGroup]="profileForm" (ngSubmit)="submit()">
+        <div>
+            <label for="name">Name :</label>
+            <input id="name" type="text" placeholder="enter your name" formControlName="name" [style.border-color]="profileForm.get('name')?.invalid && (profileForm.get('name')?.dirty || profileForm.get('name')?.touched) ? 'red':''">
+            {{profileForm.get('name')?.invalid}} & {{profileForm.get('name')?.dirty}} & {{profileForm.get('name')?.touched}}
+            <p *ngIf="profileForm.get('name').invalid && profileForm.get('name').touched">please enter field</p>
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input id="email" type="text" placeholder="enter your email"  formControlName="email">
+        </div>
+<!-- Validation Errors --><!-- Validation Errors --><!-- Validation Errors --><!-- Validation Errors --><!-- Validation Errors --><!-- Validation Errors --><!-- Validation Errors -->
+    <!-- <div *ngIf="username.invalid && username.touched" class="error">
+      <small *ngIf="username.errors?.required">Username is required.</small>
+      <small *ngIf="username.errors?.minlength">
+        Username must be at least {{ username.errors.minlength.requiredLength }} characters.
+      </small>
+    </div> -->
+        <div formArrayName="education">
+            <div>Educations : </div>
+            <!-- @for(control of getEducationControl?.controls; track $index; let i = $index){ -->
+              <!-- @for (control of getEducationControl.controls;track index; let i = index) { -->
+                <div *ngFor="let control of getEducationControl.controls;let i = index" [formGroupName]="i">
+                    <label for="class">class :</label>
+                    <input id="class" type="text" formControlName="class">
+                    <button type="button" (click)="addEducation()" *ngIf="i + 1 == getEducationControl.controls.length">add</button>
+                    <button type="button" *ngIf="i + 1 !== getEducationControl.controls.length" (click)="removeControl(i)">remove</button>
+                </div>
+               <!-- } -->
+                {{getEducationControl.controls.length}}--{{profileForm.value |json}}
+        </div>
+     </form>
+</div>
+
